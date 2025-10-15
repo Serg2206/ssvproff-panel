@@ -1,0 +1,92 @@
+
+# ==============================================================================
+# 📦 Dependabot Configuration
+# ==============================================================================
+# Автоматические обновления зависимостей для безопасности и актуальности
+
+version: 2
+
+updates:
+  # ===== Python зависимости (Backend) =====
+  - package-ecosystem: "pip"
+    directory: "/panel/backend"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "Serg2206"
+    assignees:
+      - "Serg2206"
+    labels:
+      - "dependencies"
+      - "backend"
+      - "python"
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+    # Группировка минорных и патч обновлений
+    groups:
+      python-minor-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # ===== Node зависимости (Frontend) =====
+  - package-ecosystem: "npm"
+    directory: "/panel/frontend"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "Serg2206"
+    assignees:
+      - "Serg2206"
+    labels:
+      - "dependencies"
+      - "frontend"
+      - "npm"
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+    # Игнорировать определённые зависимости (если нужно)
+    ignore:
+      # Пример: игнорировать major обновления для стабильности
+      # - dependency-name: "react"
+      #   update-types: ["version-update:semver-major"]
+    # Группировка минорных и патч обновлений
+    groups:
+      npm-minor-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # ===== GitHub Actions =====
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "Serg2206"
+    assignees:
+      - "Serg2206"
+    labels:
+      - "dependencies"
+      - "github-actions"
+      - "ci"
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"

@@ -1,0 +1,159 @@
+
+# ==============================================================================
+# 🔧 .gitattributes для SSVproff Panel
+# ==============================================================================
+# Контроль обработки файлов в Git.
+# Подробнее: https://git-scm.com/docs/gitattributes
+
+# ==============================================================================
+# Автоматическая нормализация переводов строк
+# ==============================================================================
+# Автоматическое преобразование CRLF <-> LF
+* text=auto
+
+# ==============================================================================
+# Исходные файлы: всегда LF
+# ==============================================================================
+# Python
+*.py text eol=lf
+
+# JavaScript / TypeScript
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+
+# JSON
+*.json text eol=lf
+
+# YAML
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Markdown
+*.md text eol=lf
+
+# HTML / CSS
+*.html text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+
+# XML
+*.xml text eol=lf
+
+# Shell скрипты
+*.sh text eol=lf
+
+# ==============================================================================
+# Windows-специфичные файлы: всегда CRLF
+# ==============================================================================
+# PowerShell
+*.ps1 text eol=crlf
+*.psm1 text eol=crlf
+*.psd1 text eol=crlf
+
+# Batch
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# ==============================================================================
+# Бинарные файлы
+# ==============================================================================
+# Изображения
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.webp binary
+
+# Видео
+*.mp4 binary
+*.mov binary
+*.avi binary
+*.webm binary
+
+# Аудио
+*.mp3 binary
+*.wav binary
+*.ogg binary
+
+# Архивы
+*.zip binary
+*.tar binary
+*.gz binary
+*.7z binary
+*.rar binary
+
+# Документы
+*.pdf binary
+*.doc binary
+*.docx binary
+*.xls binary
+*.xlsx binary
+*.ppt binary
+*.pptx binary
+
+# Исполняемые файлы
+*.exe binary
+*.dll binary
+*.so binary
+*.dylib binary
+
+# Шрифты
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.eot binary
+
+# ==============================================================================
+# Конфигурационные файлы
+# ==============================================================================
+# .env файлы
+.env* text eol=lf
+
+# Git конфигурация
+.gitignore text eol=lf
+.gitattributes text eol=lf
+
+# EditorConfig
+.editorconfig text eol=lf
+
+# ==============================================================================
+# Diff настройки
+# ==============================================================================
+# Python функции
+*.py diff=python
+
+# Markdown заголовки
+*.md diff=markdown
+
+# ==============================================================================
+# Настройки экспорта (git archive)
+# ==============================================================================
+# Исключить из архива
+.gitattributes export-ignore
+.gitignore export-ignore
+.editorconfig export-ignore
+.github/ export-ignore
+.vscode/ export-ignore
+.idea/ export-ignore
+
+# ==============================================================================
+# Linguist: определение языков для GitHub
+# ==============================================================================
+# Исключить из статистики языков
+*.md linguist-documentation
+*.json linguist-generated
+*.lock linguist-generated
+
+# Vendored код (не учитывать в статистике)
+node_modules/ linguist-vendored
+venv/ linguist-vendored
+panel/frontend/dist/ linguist-generated
+
+# ==============================================================================
+# Конец .gitattributes
+# ==============================================================================

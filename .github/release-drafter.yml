@@ -1,0 +1,134 @@
+
+# ==============================================================================
+# 📋 Release Drafter Configuration
+# ==============================================================================
+# Автоматическая сборка заметок релиза на основе PR и коммитов
+
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+
+# Категории для группировки изменений
+categories:
+  - title: '🚀 Новые функции'
+    labels:
+      - 'feature'
+      - 'enhancement'
+  - title: '🐛 Исправления ошибок'
+    labels:
+      - 'fix'
+      - 'bugfix'
+      - 'bug'
+  - title: '📚 Документация'
+    labels:
+      - 'documentation'
+      - 'docs'
+  - title: '🔒 Безопасность'
+    labels:
+      - 'security'
+  - title: '⚡ Производительность'
+    labels:
+      - 'performance'
+  - title: '🔧 Рефакторинг'
+    labels:
+      - 'refactor'
+      - 'refactoring'
+  - title: '🧪 Тесты'
+    labels:
+      - 'test'
+      - 'tests'
+  - title: '🔨 CI/CD'
+    labels:
+      - 'ci'
+      - 'cd'
+      - 'github-actions'
+  - title: '📦 Зависимости'
+    labels:
+      - 'dependencies'
+      - 'deps'
+
+# Шаблон changelog
+change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+change-title-escapes: '\<*_&'
+
+# Правила версионирования (SemVer)
+version-resolver:
+  major:
+    labels:
+      - 'major'
+      - 'breaking'
+  minor:
+    labels:
+      - 'minor'
+      - 'feature'
+      - 'enhancement'
+  patch:
+    labels:
+      - 'patch'
+      - 'fix'
+      - 'bugfix'
+      - 'bug'
+      - 'documentation'
+      - 'deps'
+  default: patch
+
+# Шаблон тела релиза
+template: |
+  ## Что нового в $RESOLVED_VERSION
+  
+  $CHANGES
+  
+  ## 📦 Полный Changelog
+  
+  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
+  
+  ## 📥 Установка
+  
+  ```bash
+  git clone https://github.com/$OWNER/$REPOSITORY.git
+  cd $REPOSITORY
+  git checkout v$RESOLVED_VERSION
+  ```
+  
+  Подробнее см. [README.md](https://github.com/$OWNER/$REPOSITORY/blob/main/README.md).
+
+# Автоматическая метка для PR без label
+autolabeler:
+  - label: 'documentation'
+    files:
+      - '*.md'
+      - 'docs/**/*'
+  - label: 'feature'
+    branch:
+      - '/^feature[/-].+/'
+    title:
+      - '/^feat(\(.+\))?:.+/i'
+  - label: 'fix'
+    branch:
+      - '/^fix[/-].+/'
+      - '/^hotfix[/-].+/'
+    title:
+      - '/^fix(\(.+\))?:.+/i'
+  - label: 'ci'
+    files:
+      - '.github/workflows/*'
+  - label: 'dependencies'
+    files:
+      - 'panel/backend/requirements.txt'
+      - 'panel/frontend/package*.json'
+
+# Исключить PR с определёнными метками
+exclude-labels:
+  - 'skip-changelog'
+  - 'wip'
+  - 'work-in-progress'
+
+# Заменить метки в заголовках PR
+replacers:
+  - search: '/^feat(\(.+\))?:\s*/i'
+    replace: ''
+  - search: '/^fix(\(.+\))?:\s*/i'
+    replace: ''
+  - search: '/^docs(\(.+\))?:\s*/i'
+    replace: ''
+  - search: '/^chore(\(.+\))?:\s*/i'
+    replace: ''

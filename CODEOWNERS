@@ -1,0 +1,24 @@
+
+# Code Owners for ssvproff-panel
+# Автоматически запрашивает review у владельцев при изменении файлов
+
+# Все файлы по умолчанию
+* @Serg2206
+
+# Документация
+/README.md @Serg2206
+/CONTRIBUTING.md @Serg2206
+/SECURITY.md @Serg2206
+
+# Backend
+/panel/backend/ @Serg2206
+
+# Frontend
+/panel/frontend/ @Serg2206
+
+# CI/CD
+/.github/ @Serg2206
+
+# PowerShell скрипты
+/flows/ @Serg2206
+/start_panel.ps1 @Serg2206
